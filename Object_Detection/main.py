@@ -2,9 +2,9 @@ import cv2
 thres = 0.45  # Threshold to detect object
 
 cap = cv2.VideoCapture(0)
-#cap.set(3, 1280)
-#cap.set(4, 720)
-#cap.set(10, 70)
+cap.set(3, 1280)
+cap.set(4, 720)
+cap.set(10, 70)
 
 classNames = []
 classFile = 'object_detection_basic\coco.names'
@@ -23,7 +23,7 @@ net.setInputSwapRB(True)
 while True:
     success, img = cap.read()
     classIds, confs, bbox = net.detect(img, confThreshold=thres)
-    print(classIds, bbox, confs)
+    print(classIds, bbox)
 
     if len(classIds) != 0:
         for classId, confidence, box in zip(classIds.flatten(), confs.flatten(), bbox):
